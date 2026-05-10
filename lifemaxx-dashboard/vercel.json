@@ -1,0 +1,6 @@
+{
+  "rewrites": [
+    { "source": "/api/eod", "destination": "/api/eod.js" },
+    { "source": "/api/todos", "destination": "/api/todos.js" }
+  ]
+}
