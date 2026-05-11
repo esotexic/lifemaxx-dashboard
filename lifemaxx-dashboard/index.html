@@ -187,10 +187,9 @@
           fetch('/api/todos')
         ]);
 
-        if (!eodRes.ok || !todoRes.ok) throw new Error('API error');
-
-        const eod = await eodRes.json();
-        const todos = await todoRes.json();
+        const eod = eodRes.ok ? await eodRes.json() : { entries: [] };
+   const todos = todoRes.ok ? await todoRes.json() : { pages: [] };
+    
 
         renderDashboard(eod, todos);
         document.getElementById('lastUpdated').textContent = 'updated ' + new Date().toLocaleTimeString();
