@@ -1,5 +1,5 @@
 const NOTION_TOKEN = process.env.NOTION_TOKEN;
-const EOD_DB = '322c4c26-9d19-8029-af7f-000bfafb8ae9';
+const EOD_DB = '322c4c269d1980b2acf7db3becb7ae44';
 
 async function notionQuery(databaseId) {
   const res = await fetch(`https://api.notion.com/v1/databases/${databaseId}/query`, {
