@@ -237,14 +237,11 @@
       const eatClean = days.filter(d => d.ateClean === true).length;
       const eatPct = days.length ? Math.round((eatClean / days.length) * 100) : 0;
 
-      // todo totals across all pages
-      let totalTasks = 0, doneTasks = 0;
-      todoPages.forEach(p => {
-        totalTasks += p.total || 0;
-        doneTasks += p.done || 0;
-      });
-      const completionPct = totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0;
-
+     let totalTasks = todos.totalTasks || 0;
+let doneTasks = todos.doneTasks || 0;
+if (!totalTasks) { todoPages.forEach(p => { totalTasks += p.total||0; doneTasks += p.done||0; }); }
+const completionPct = totalTasks ? Math.round((doneTasks / totalTasks) * 100) : 0;
+      
       // recent EOD data for charts
       const recentDays = days.slice(-7);
       const chartLabels = recentDays.map(d => d.date ? d.date.slice(5) : '');
@@ -444,6 +441,7 @@
           },
           options: {
             responsive: true, maintainAspectRatio: false,
+            spanGaps: true,
             plugins: { legend: { display: false } },
             scales: {
               y: {
